@@ -87,12 +87,21 @@ public class CustomerController {
 		Response response = new Response();
 		
 		if(!isCustomerProfileValid(customer, response)) {
-			// Save to error table
+			Optional<Customer> customerRecord = customerStore.findByCustomerId(customer.getCustomerId());
+			
 			EventLog eventLog = new EventLog();
 			eventLog.setCustomerId(customer.getCustomerId());
 			eventLog.setRequestDate(String.valueOf(LocalDate.now()));
 			eventLog.setRequestType(CUSTOMER_CREATE_EVENT);
 			eventLog.setErrorDescription(response.getResponseDescription());
+			
+			if(customerRecord.isPresent()) {
+				eventLog.setErrorDescription(Errors.DUPLICATE_RECORD.getResponseDescription());
+				
+				response.setResponseCode(Errors.DUPLICATE_RECORD.getResponseCode());
+				response.setResponseDescription(Errors.DUPLICATE_RECORD.getResponseDescription());
+			} 
+			
 			eventLogStore.create(eventLog);
 			
 			return response;
@@ -125,6 +134,16 @@ public class CustomerController {
 					eventLog.setRequestDate(String.valueOf(LocalDate.now()));
 					eventLog.setRequestType(CUSTOMER_CREATE_EVENT);
 					eventLog.setErrorDescription(response.getResponseDescription());
+					
+					Optional<Customer> customerRecord = customerStore.findByCustomerId(customer.getCustomerId());
+					
+					if(customerRecord.isPresent()) {
+						eventLog.setErrorDescription(Errors.DUPLICATE_RECORD.getResponseDescription());
+						
+						response.setResponseCode(Errors.DUPLICATE_RECORD.getResponseCode());
+						response.setResponseDescription(Errors.DUPLICATE_RECORD.getResponseDescription());
+					} 
+					
 					eventLogStore.create(eventLog);
 				} else {
 					customerStore.create(customer);
@@ -142,9 +161,11 @@ public class CustomerController {
 		return response;
     }
 	
-	@PutMapping("/customer")
-	public String updateCustomer() {
-        return "Hello World!";
+	@PutMapping("/customer/{customerId}")
+	public Response updateCustomer(@RequestBody Customer customer, @PathVariable String customerId) {
+		Response response = new Response();
+		
+        return response;
     }
         
 	private boolean isCustomerProfileValid(Customer customerProfile, Response response) {

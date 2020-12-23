@@ -6,7 +6,8 @@ public enum Errors {
 	INVALID_CUSTOMER_AGE("101", "The customer should be above 18 years old."),
 	INVALID_CUSTOMER_AGE_MISSING("101", "The field birth date is missing."),
 	INVALID_CUSTOMER_SHARES_AMOUNT("102", "The customer must have at least 1 share."),
-	INVALID_CUSTOMER_SHARES_PRICE("102", "The price of the share is invalid. Share price should be greater than 0.");
+	INVALID_CUSTOMER_SHARES_PRICE("102", "The price of the share is invalid. Share price should be greater than 0."),
+	DUPLICATE_RECORD("102", "The customer already exist..");
 	
 	private final String responseCode;
 	private final String responseDescription;

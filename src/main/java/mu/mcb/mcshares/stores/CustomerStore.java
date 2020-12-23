@@ -20,7 +20,12 @@ public class CustomerStore {
 		if(null == customer.getId()) {
 			customer.setId(ObjectId.get());
 		}
+		
 		customerRepository.save(customer);
+	}
+	
+	public void update(String customerId, Customer customer) {
+		//customerRepository.
 	}
 		
 	public List<Customer> find() {
