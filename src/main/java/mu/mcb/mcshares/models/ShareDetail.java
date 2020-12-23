@@ -2,10 +2,10 @@ package mu.mcb.mcshares.models;
 
 import javax.xml.bind.annotation.XmlElement;
 
-public class ShareDetail { 
+public class ShareDetail {  
 	private int numShares;
-	private String sharePrice;
-	
+	private double sharePrice;
+		
 	@XmlElement(name = "Num_Shares")
 	public int getNumShares() {
 		return numShares;
@@ -15,10 +15,14 @@ public class ShareDetail {
 	}
 	
 	@XmlElement(name = "Share_Price")
-	public String getSharePrice() {
+	public double getSharePrice() {
 		return sharePrice;
 	}
-	public void setSharePrice(String sharePrice) {
+	public void setSharePrice(double sharePrice) {
 		this.sharePrice = sharePrice;
+	}
+	
+	public double getShareBalance() {
+		return sharePrice * numShares;
 	}
 }

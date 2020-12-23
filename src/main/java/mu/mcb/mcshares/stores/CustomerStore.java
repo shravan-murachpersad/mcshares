@@ -24,12 +24,16 @@ public class CustomerStore {
 		customerRepository.save(customer);
 	}
 		
-	public Optional<Customer> findById(String _id) {
-		return customerRepository.findById(_id);
-	}
-	
 	public List<Customer> find() {
 		return customerRepository.findAll();
+	}
+	
+	public Optional<Customer> findByCustomerId(String customerId) {
+		return customerRepository.findByCustomerId(customerId);
+	}
+	
+	public List<Customer> findByContactName(String query) {	
+		return customerRepository.findByContactDetailsContactName(query);
 	}
 	
 	public List<Customer> find(String project) {

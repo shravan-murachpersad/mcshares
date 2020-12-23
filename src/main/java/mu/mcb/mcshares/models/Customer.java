@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-@JsonInclude(Include.NON_NULL) 
+@JsonInclude(Include.NON_NULL)  
 public class Customer extends Entity{
 	
 	@Indexed(unique = true)

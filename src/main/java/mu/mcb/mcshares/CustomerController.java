@@ -2,10 +2,13 @@ package mu.mcb.mcshares;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,14 +31,38 @@ public class CustomerController {
 	private CustomerStore customerStore;
 
 	@GetMapping("/customer")
-    public CustomersResponse getCustomers(@RequestParam String project) {
+    public CustomersResponse getCustomers() {
 		CustomersResponse response = new CustomersResponse();
 		
-		if(null != project) {
-			
-		}
-		
 		List<Customer> customerList = customerStore.find();
+		response.setCustomers(customerList);
+		response.setResponseCode(Errors.SUCCESS.getResponseCode());
+		response.setResponseDescription(Errors.SUCCESS.getResponseDescription());
+		
+        return response;
+    }
+	
+	@GetMapping("/customer/{customerId}")
+    public CustomersResponse getCustomerByCustomerId(@PathVariable String customerId) { 
+		CustomersResponse response = new CustomersResponse();
+		
+		Optional<Customer> customer = customerStore.findByCustomerId(customerId);
+		
+		List<Customer> customerList = new ArrayList<Customer>();
+		customerList.add(customer.get());
+		
+		response.setCustomers(customerList);
+		response.setResponseCode(Errors.SUCCESS.getResponseCode());
+		response.setResponseDescription(Errors.SUCCESS.getResponseDescription());
+		
+        return response;
+    }
+	
+	@GetMapping("/search")
+    public CustomersResponse searchCustomers(@RequestParam String q) {
+		CustomersResponse response = new CustomersResponse();
+		
+		List<Customer> customerList = customerStore.findByContactName(q);
 		response.setCustomers(customerList);
 		response.setResponseCode(Errors.SUCCESS.getResponseCode());
 		response.setResponseDescription(Errors.SUCCESS.getResponseDescription());
