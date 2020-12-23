@@ -1,0 +1,215 @@
+{
+	"info": {
+		"_postman_id": "409ff661-6c8c-41bf-af15-70a5f576d1fc",
+		"name": "McShares",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "pwd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/public/token",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"public",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bulk Create Customer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoidGVzdCIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MDg3Mjc4ODAsImV4cCI6MTYwODcyODQ4MH0.VAyysLBA5cmpOMXeIlVBQIMiE9sEyEliMci9ipj4c-xcKIEHEJ-Sfo65bYGv3x5e6O_VIBGYLy1hSjbd97QcNQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "registrationFile",
+							"type": "file",
+							"src": "/Users/murachpersad/Downloads/Backend Engineer/McShares_2018.xml"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/secure/bulkCreateCustomer",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"secure",
+						"bulkCreateCustomer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoidGVzdCIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MDg3MDk3OTIsImV4cCI6MTYwODcxMDM5Mn0.Hfi5nH4f5N4RgfFZMGFtHH5BKb4s2Hy8rRQREX7MYyGIQJBNnP5q3S9TuQ4psosRCiwikTZrTHCiem5_EZ40-g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/secure/customer",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"secure",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Customer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoidGVzdCIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MDg3MDk3OTIsImV4cCI6MTYwODcxMDM5Mn0.Hfi5nH4f5N4RgfFZMGFtHH5BKb4s2Hy8rRQREX7MYyGIQJBNnP5q3S9TuQ4psosRCiwikTZrTHCiem5_EZ40-g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/secure/search?q=Dell",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"secure",
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Dell"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer By CustomerId",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoidGVzdCIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MDg3MTkyNDIsImV4cCI6MTYwODcxOTg0Mn0.WVYPit9UQqoUsSG4W6upONDYLSRYdZ2j4CaypBRA0pxIRtu5MjJBZXY8_U1qZ3k8yrb6i9E_fdU5vwMlLn3RkA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/secure/customer/H15676",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"secure",
+						"customer",
+						"H15676"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Customer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoidGVzdCIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MDg3Mjc3MDEsImV4cCI6MTYwODcyODMwMX0.YgW-LMPy-low0tmZeuwROLtAavKn69GW1XRxy29rEiAYZJ8dom4uFDp0yHa0BAKA-RsikXzhFHttpmYduDHWmA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"customerId\":\"H15676\",\n   \"customerType\":\"Individual\",\n   \"birthDate\":\"19/07/1993\",\n   \"dateIncorp\":\"14/01/2002\",\n   \"registrationNo\":\"R10411524\",\n   \"mailingAddress\":{\n      \"addressLine1\":\"50 Paul\",\n      \"addressLine2\":\"Detroit Road\",\n      \"townCity\":\"Ohio\",\n      \"country\":\"United States\"\n   },\n   \"contactDetails\":{\n      \"contactName\":\"Dellaware Ltd\",\n      \"contactDetail\":\"\"\n   },\n   \"sharesDetails\":{\n      \"numShares\":63000,\n      \"sharePrice\":12.2,\n      \"shareBalance\":768600.0\n   }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/secure/customer",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"secure",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
