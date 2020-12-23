@@ -30,7 +30,6 @@ public class App {
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.authorizeRequests()
 				.antMatchers(HttpMethod.POST, "/public/token").permitAll()
-				.antMatchers(HttpMethod.POST, "/secure/bulkCreateCustomer").permitAll()
 				.anyRequest().authenticated();
 		
 		}
